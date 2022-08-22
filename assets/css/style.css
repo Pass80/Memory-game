@@ -5,14 +5,14 @@
 }
 
 #grid {
-    width: 60%;
-    height: 80vh;
+    width: 50%;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 5rem;
     margin: 0 auto;
 }
 
 #grid img {
-    width: 10rem;
-    height: 10rem;
+    width: 20%;
+    height: 20%;
 }
