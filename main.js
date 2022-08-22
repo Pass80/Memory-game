@@ -32,10 +32,11 @@ const wonCards = [];
 // create a function which create 20 image elements and appends them to the div element.
 function createBoard() {
     for (let i = 0; i < 20; i++) {
+        // create an image element
         const card = document.createElement('img');
         //adding an attribute and its value to every created image element
         card.setAttribute('src', './assets/photos/card.png');
-        card.setAttribute('data-id', i);
+        card.setAttribute('key', i);
         card.addEventListener('click', flipCard);
         gridDisplay.appendChild(card);
         // console.log(card, i);
@@ -46,18 +47,21 @@ function checkMatch() {
     const cards = document.querySelectorAll('img');
     const optionOneId = chosenCardsIds[0];
     const optionTwoId = chosenCardsIds[1];
-    if (optionOneId === optionTwoId) {
-        alert('You have clicked the same image');
-    }
+    // if (optionOneId === optionTwoId) {
+    //     alert('You have clicked the same image');
+    // }
 
     if (chosenCards[0] === chosenCards[1]) {
         alert('you found a match');
+        // set the chosen cards background to match
         cards[optionOneId].setAttribute('src', './assets/photos/match.png');
         cards[optionTwoId].setAttribute('src', './assets/photos/match.png');
+        // remove the eventlistener from the matched cards
         cards[optionOneId].removeEventListener('click', flipCard);
         cards[optionTwoId].removeEventListener('click', flipCard);
 
         wonCards.push(chosenCards);
+        console.log(wonCards);
     } else {
         cards[optionOneId].setAttribute('src', './assets/photos/card.png');
         cards[optionTwoId].setAttribute('src', './assets/photos/card.png');
@@ -72,14 +76,25 @@ function checkMatch() {
 }
 
 function flipCard() {
-    const cardId = this.getAttribute('data-id');
-    chosenCards.push(cardArray[cardId].name);
-    chosenCardsIds.push(cardId);
-    console.log(chosenCards, chosenCardsIds);
-
-    this.setAttribute('src', cardArray[cardId].img);
+    const cardId = this.getAttribute('key');
+    // check if the clicked card is already in the chosenCard array to prevent adding the same card twice
+    // if the user clicks the same card twice after each other
+    if (chosenCardsIds.length > 0 && chosenCardsIds.includes(cardId)) {
+        return;
+    } else {
+        //add the equivalent animal name from cardArray to the clicked card to the chosenCards array
+        chosenCards.push(cardArray[cardId].name);
+        // add the id of clicked card to the chosenCardsIds array.
+        chosenCardsIds.push(cardId);
+        // console.log(chosenCards, chosenCardsIds);
+        // show the animal image of the clicked card
+        this.setAttribute('src', cardArray[cardId].img);
+    }
+    // the checkMatch function runs just when the chosenCards array contains two elements
+    // this means the function will nut run untill the user choose another card so the function
+    //can compare if there is match
     if (chosenCards.length === 2) {
-        setTimeout(checkMatch, 500);
+        setTimeout(checkMatch, 200);
     }
 }
 
