@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#grid {
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+#grid img {
+    width: 18%;
+}
