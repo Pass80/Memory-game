@@ -5,7 +5,7 @@
 }
 
 #grid {
-    width: 80%;
+    width: 60%;
     height: 80vh;
     display: flex;
     flex-wrap: wrap;
@@ -13,5 +13,6 @@
 }
 
 #grid img {
-    width: 18%;
+    width: 10rem;
+    height: 10rem;
 }
