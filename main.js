@@ -72,28 +72,61 @@ const gridDisplay1 = document.querySelector('#grid1');
 const gridDisplay2 = document.querySelector('#grid2');
 const results = document.querySelector('#result');
 const moves = document.querySelector('#move');
+let timerRef = document.getElementById('time');
 let chosenCards = [];
 let chosenCardsIds = [];
 const wonCards = [];
+let [second, minute] = [0, 0];
+let int = null;
 
 // using the sort method to get random order of array´s elements every time.
 cardArray1.sort(() => 0.5 - Math.random());
 cardArray2.sort(() => 0.5 - Math.random());
+
+// create a timer function
+function mainTime() {
+    second++;
+    if (second == 60) {
+        second = 0;
+        minute++;
+        if (minute == 60) {
+            minute = 0;
+        }
+    }
+    let m = minute < 10 ? '0' + minute : minute;
+    let s = second < 10 ? '0' + second : second;
+    timerRef.innerHTML = ` ${m} : ${s}`;
+}
 
 // create functions to choose the levels in game
 const startNormalLvl = () => {
     gridDisplay1.style.display = 'flex';
     gridDisplay2.style.display = 'none';
     levelModal.style.display = 'none';
+    if (int !== null) {
+        clearInterval(int);
+        [second, minute] = [0, 0];
+        timerRef.innerHTML = '00 : 00';
+    }
+    int = setInterval(mainTime, 1000);
 };
 
 const startHardLvl = () => {
     gridDisplay2.style.display = 'flex';
     gridDisplay1.style.display = 'none';
     levelModal.style.display = 'none';
+    if (int !== null) {
+        clearInterval(int);
+        [second, minute] = [0, 0];
+        timerRef.innerHTML = '00 : 00';
+    }
+    int = setInterval(mainTime, 1000);
 };
 // function to close the game
 const exitGame = () => {
+    if (int !== null) {
+        clearInterval(int);
+    }
     window.close();
 };
 
@@ -160,7 +193,11 @@ function checkMatch() {
     chosenCards = [];
     chosenCardsIds = [];
     if (wonCards.length === cardArray1.length / 2) {
-        results.innerHTML = 'You found all matches';
+        // results.innerHTML = 'You found all matches';
+        clearInterval(int);
+        endModal.style.display = 'block';
+        gridDisplay2.style.display = 'none';
+        gridDisplay1.style.display = 'none';
     }
 }
 
@@ -198,7 +235,11 @@ function checkMatch2() {
     chosenCards = [];
     chosenCardsIds = [];
     if (wonCards.length === cardArray2.length / 2) {
-        results.innerHTML = 'You found all matches';
+        // results.innerHTML = 'You found all matches';
+        clearInterval(int);
+        endModal.style.display = 'block';
+        gridDisplay2.style.display = 'none';
+        gridDisplay1.style.display = 'none';
     }
 }
 
@@ -222,7 +263,7 @@ function flipCard() {
     //can compare if there is match
     if (chosenCards.length === 2) {
         moves.innerHTML++;
-        setTimeout(checkMatch, 400);
+        setTimeout(checkMatch, 300);
     }
 }
 
@@ -245,20 +286,10 @@ function flipCard2() {
     // this means the function will nut run untill the user choose another card so the function
     //can compare if there is match
     if (chosenCards.length === 2) {
-        setTimeout(checkMatch2, 400);
+        setTimeout(checkMatch2, 300);
     }
 }
 
+// run the fuctions
 createBoard();
 createBoard2();
-
-var interval = setInterval(function () {
-    document.getElementById('count').innerHTML = count;
-    count--;
-    if (count === 0) {
-        clearInterval(interval);
-        document.getElementById('count').innerHTML = 'Done';
-        // or...
-        alert("You're out of time!");
-    }
-}, 1000);
