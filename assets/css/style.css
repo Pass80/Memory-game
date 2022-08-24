@@ -4,15 +4,124 @@
     padding: 0;
 }
 
-#grid {
-    width: 50%;
+body {
+    background: url('../photos/bk.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.sidebar {
     display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: rgb(239, 255, 214, 0.8);
+}
+
+.sidebar h3 {
+    font-size: 2rem;
+    padding: 2rem 1rem;
+}
+
+.sidebar h3 span {
+    padding-left: 1rem;
+    color: orangered;
+}
+
+.container {
+    width: 100%;
+}
+
+#grid1 {
+    display: none;
+    width: 50%;
     flex-wrap: wrap;
-    padding-top: 5rem;
+    padding-top: 2rem;
     margin: 0 auto;
 }
 
-#grid img {
+#grid1 img {
     width: 20%;
     height: 20%;
+}
+
+#grid2 {
+    display: none;
+    width: 80%;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    margin: 0 auto;
+}
+
+#grid2 img {
+    width: 12%;
+    height: 12%;
+}
+
+/* The Modal (background) */
+.modal,
+.end-modal {
+    display: block; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0, 0, 0); /*Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content,
+.endmodal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(239, 255, 214, 0.8);
+    margin: 6rem auto;
+    padding: 3rem;
+    border: 0.5rem solid rgba(51, 52, 50);
+    border-radius: 1.5rem;
+    width: 40%;
+}
+
+.modal-content h3 {
+    font-size: 3rem;
+}
+
+.modal-content p,
+.endmodal-content p {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.modal-content p:hover,
+.endmodal-content p:hover {
+    cursor: pointer;
+    padding: 0.9rem;
+    font-size: 2.2rem;
+    color: orangered;
+}
+
+.statistics {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgb(239, 255, 214, 0.9);
+}
+
+.statistics li {
+    width: 50%;
+    font-size: 1rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+.statistics li span {
+    padding-left: 1rem;
+    color: orangered;
 }

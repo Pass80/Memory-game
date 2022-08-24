@@ -8,8 +8,43 @@
         <title>Memory Game</title>
     </head>
     <body>
-        <h3>Score:<span id="result"></span></h3>
-        <div id="grid"></div>
+        <!-- The end Game Modal -->
+        <div id="endModal" class="end-modal">
+            <!-- Modal content -->
+            <div class="endmodal-content">
+                <!-- <ul class="statistics">
+                    <li>Level:<span id="statisticsLevel">Normal</span></li>
+                    <li>Move:<span id="statisticsMove">0</span></li>
+                    <li>Match:<span id="statisticsResult">0</span></li>
+                    <li>Time:<span id="statisticsTime">00:00:00</span></li>
+                </ul> -->
+                <p onclick="selectLvl()" id="select">Select Level</p>
+                <p onclick="exitGame()" id="exit">Exit</p>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h3>Choose the Level</h3>
+                <p onclick="startEasyLvl()" id="easy">Easy</p>
+                <p onclick="startNormalLvl()" id="normal">Normal</p>
+                <p onclick="startHardLvl()" id="hard">Hard</p>
+            </div>
+        </div>
+        <header>
+            <div class="sidebar">
+                <h3>Level:<span id="level">Normal</span></h3>
+                <h3>Move:<span id="move">0</span></h3>
+                <h3>Match:<span id="result">0</span></h3>
+                <h3>Time:<span id="time">00:00:00</span></h3>
+            </div>
+        </header>
+        <div class="container">
+            <div id="grid1"></div>
+            <div id="grid2"></div>
+        </div>
+
         <script src="main.js"></script>
     </body>
 </html>
