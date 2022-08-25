@@ -72,6 +72,12 @@ const gridDisplay1 = document.querySelector('#grid1');
 const gridDisplay2 = document.querySelector('#grid2');
 const results = document.querySelector('#result');
 const moves = document.querySelector('#move');
+const showLvl = document.querySelector('#level');
+
+const level = document.getElementById('statisticsLevel');
+const movesInRound = document.getElementById('statisticsMove');
+const resultsOfRound = document.getElementById('statisticsResult');
+const timeOfRound = document.getElementById('statisticsTime');
 let timerRef = document.getElementById('time');
 let chosenCards = [];
 let chosenCardsIds = [];
@@ -103,6 +109,7 @@ const startNormalLvl = () => {
     gridDisplay1.style.display = 'flex';
     gridDisplay2.style.display = 'none';
     levelModal.style.display = 'none';
+    showLvl.innerHTML = 'Normal';
     if (int !== null) {
         clearInterval(int);
         [second, minute] = [0, 0];
@@ -115,6 +122,7 @@ const startHardLvl = () => {
     gridDisplay2.style.display = 'flex';
     gridDisplay1.style.display = 'none';
     levelModal.style.display = 'none';
+    showLvl.innerHTML = 'Hard';
     if (int !== null) {
         clearInterval(int);
         [second, minute] = [0, 0];
@@ -132,10 +140,11 @@ const exitGame = () => {
 
 // function to open the level selection window
 const selectLvl = () => {
-    endModal.style.display = 'none';
-    gridDisplay2.style.display = 'none';
-    gridDisplay1.style.display = 'none';
-    levelModal.style.display = 'block';
+    location.reload();
+    // endModal.style.display = 'none';
+    // gridDisplay2.style.display = 'none';
+    // gridDisplay1.style.display = 'none';
+    // levelModal.style.display = 'block';
 };
 
 // create a function which create 20 image elements and appends them to the div element.
@@ -198,6 +207,10 @@ function checkMatch() {
         endModal.style.display = 'block';
         gridDisplay2.style.display = 'none';
         gridDisplay1.style.display = 'none';
+        level.innerHTML = showLvl.innerHTML;
+        movesInRound.innerHTML = moves.innerHTML;
+        resultsOfRound.innerHTML = results.innerHTML;
+        timeOfRound.innerHTML = timerRef.innerHTML;
     }
 }
 
@@ -240,6 +253,10 @@ function checkMatch2() {
         endModal.style.display = 'block';
         gridDisplay2.style.display = 'none';
         gridDisplay1.style.display = 'none';
+        level.innerHTML = showLvl.innerHTML;
+        movesInRound.innerHTML = moves.innerHTML;
+        resultsOfRound.innerHTML = results.innerHTML;
+        timeOfRound.innerHTML = timerRef.innerHTML;
     }
 }
 
