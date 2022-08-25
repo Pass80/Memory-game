@@ -118,7 +118,7 @@ function mainTime() {
     }
     let m = minute < 10 ? '0' + minute : minute;
     let s = second < 10 ? '0' + second : second;
-    timerRef.innerHTML = ` ${m} : ${s}`;
+    timerRef.innerHTML = ` ${m}:${s}`;
 }
 
 // create functions to choose the levels in game
