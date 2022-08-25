@@ -1,3 +1,18 @@
+const cardArray = [
+    { name: 'tiger', img: './assets/photos/easy/tiger-easy.png' },
+    { name: 'monkey', img: './assets/photos/easy/monkey-easy.png' },
+    { name: 'lazy', img: './assets/photos/easy/lazy-easy.png' },
+    { name: 'lion', img: './assets/photos/easy/lion-easy.png' },
+    { name: 'bull', img: './assets/photos/easy/bull-easy.png' },
+    { name: 'bear', img: './assets/photos/easy/bear-easy.png' },
+    { name: 'tiger', img: './assets/photos/easy/tiger-easy.png' },
+    { name: 'monkey', img: './assets/photos/easy/monkey-easy.png' },
+    { name: 'lazy', img: './assets/photos/easy/lazy-easy.png' },
+    { name: 'lion', img: './assets/photos/easy/lion-easy.png' },
+    { name: 'bull', img: './assets/photos/easy/bull-easy.png' },
+    { name: 'bear', img: './assets/photos/easy/bear-easy.png' },
+];
+
 const cardArray1 = [
     { name: 'tiger', img: './assets/photos/tiger.png' },
     { name: 'monkey', img: './assets/photos/monkey.png' },
@@ -68,6 +83,7 @@ const endModal = document.getElementById('endModal');
 const easy = document.getElementById('easy');
 const normal = document.getElementById('normal');
 const hard = document.getElementById('hard');
+const gridDisplay = document.querySelector('#grid');
 const gridDisplay1 = document.querySelector('#grid1');
 const gridDisplay2 = document.querySelector('#grid2');
 const results = document.querySelector('#result');
@@ -86,6 +102,7 @@ let [second, minute] = [0, 0];
 let int = null;
 
 // using the sort method to get random order of array´s elements every time.
+cardArray.sort(() => 0.5 - Math.random());
 cardArray1.sort(() => 0.5 - Math.random());
 cardArray2.sort(() => 0.5 - Math.random());
 
@@ -105,8 +122,24 @@ function mainTime() {
 }
 
 // create functions to choose the levels in game
+const startEasyLvl = () => {
+    createBoard();
+    gridDisplay.style.display = 'flex';
+    gridDisplay1.style.display = 'none';
+    gridDisplay2.style.display = 'none';
+    levelModal.style.display = 'none';
+    showLvl.innerHTML = 'Easy';
+    if (int !== null) {
+        clearInterval(int);
+        [second, minute] = [0, 0];
+        timerRef.innerHTML = '00 : 00';
+    }
+    int = setInterval(mainTime, 1000);
+};
 const startNormalLvl = () => {
+    createBoard1();
     gridDisplay1.style.display = 'flex';
+    gridDisplay.style.display = 'none';
     gridDisplay2.style.display = 'none';
     levelModal.style.display = 'none';
     showLvl.innerHTML = 'Normal';
@@ -119,8 +152,10 @@ const startNormalLvl = () => {
 };
 
 const startHardLvl = () => {
+    createBoard2();
     gridDisplay2.style.display = 'flex';
     gridDisplay1.style.display = 'none';
+    gridDisplay.style.display = 'none';
     levelModal.style.display = 'none';
     showLvl.innerHTML = 'Hard';
     if (int !== null) {
@@ -149,13 +184,26 @@ const selectLvl = () => {
 
 // create a function which create 20 image elements and appends them to the div element.
 function createBoard() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 12; i++) {
         // create an image element
         const card = document.createElement('img');
         //adding an attribute and its value to every created image element
         card.setAttribute('src', './assets/photos/card.png');
         card.setAttribute('key', i);
         card.addEventListener('click', flipCard);
+        gridDisplay.appendChild(card);
+        // console.log(card, i);
+    }
+}
+
+function createBoard1() {
+    for (let i = 0; i < 20; i++) {
+        // create an image element
+        const card = document.createElement('img');
+        //adding an attribute and its value to every created image element
+        card.setAttribute('src', './assets/photos/card.png');
+        card.setAttribute('key', i);
+        card.addEventListener('click', flipCard1);
         gridDisplay1.appendChild(card);
         // console.log(card, i);
     }
@@ -175,7 +223,7 @@ function createBoard2() {
 }
 
 function checkMatch() {
-    const cards = document.querySelectorAll('#grid1 > img');
+    const cards = document.querySelectorAll('#grid > img');
     const optionOneId = chosenCardsIds[0];
     const optionTwoId = chosenCardsIds[1];
     // if (optionOneId === optionTwoId) {
@@ -201,10 +249,52 @@ function checkMatch() {
     results.innerHTML = wonCards.length;
     chosenCards = [];
     chosenCardsIds = [];
+    if (wonCards.length === cardArray.length / 2) {
+        // results.innerHTML = 'You found all matches';
+        clearInterval(int);
+        endModal.style.display = 'block';
+        gridDisplay.style.display = 'none';
+        gridDisplay2.style.display = 'none';
+        gridDisplay1.style.display = 'none';
+        level.innerHTML = showLvl.innerHTML;
+        movesInRound.innerHTML = moves.innerHTML;
+        resultsOfRound.innerHTML = results.innerHTML;
+        timeOfRound.innerHTML = timerRef.innerHTML;
+    }
+}
+
+function checkMatch1() {
+    const cards = document.querySelectorAll('#grid1 > img');
+    const optionOneId = chosenCardsIds[0];
+    const optionTwoId = chosenCardsIds[1];
+    // if (optionOneId === optionTwoId) {
+    //     alert('You have clicked the same image');
+    // }
+
+    if (chosenCards[0] === chosenCards[1]) {
+        // alert('you found a match');
+        // set the chosen cards background to match
+        cards[optionOneId].setAttribute('src', './assets/photos/match.png');
+        cards[optionTwoId].setAttribute('src', './assets/photos/match.png');
+        // remove the eventlistener from the matched cards
+        cards[optionOneId].removeEventListener('click', flipCard1);
+        cards[optionTwoId].removeEventListener('click', flipCard1);
+
+        wonCards.push(chosenCards);
+        console.log(wonCards);
+    } else {
+        cards[optionOneId].setAttribute('src', './assets/photos/card.png');
+        cards[optionTwoId].setAttribute('src', './assets/photos/card.png');
+        // alert('sorry try again');
+    }
+    results.innerHTML = wonCards.length;
+    chosenCards = [];
+    chosenCardsIds = [];
     if (wonCards.length === cardArray1.length / 2) {
         // results.innerHTML = 'You found all matches';
         clearInterval(int);
         endModal.style.display = 'block';
+        gridDisplay.style.display = 'none';
         gridDisplay2.style.display = 'none';
         gridDisplay1.style.display = 'none';
         level.innerHTML = showLvl.innerHTML;
@@ -251,6 +341,7 @@ function checkMatch2() {
         // results.innerHTML = 'You found all matches';
         clearInterval(int);
         endModal.style.display = 'block';
+        gridDisplay.style.display = 'none';
         gridDisplay2.style.display = 'none';
         gridDisplay1.style.display = 'none';
         level.innerHTML = showLvl.innerHTML;
@@ -261,6 +352,30 @@ function checkMatch2() {
 }
 
 function flipCard() {
+    const cardId = this.getAttribute('key');
+    // check if the clicked card is already in the chosenCard array to prevent adding the same card twice
+    // if the user clicks the same card twice after each other
+    if (chosenCardsIds.length > 0 && chosenCardsIds.includes(cardId)) {
+        return;
+    } else {
+        //add the equivalent animal name from cardArray to the clicked card to the chosenCards array
+        chosenCards.push(cardArray[cardId].name);
+        // add the id of clicked card to the chosenCardsIds array.
+        chosenCardsIds.push(cardId);
+        // console.log(chosenCards, chosenCardsIds);
+        // show the animal image of the clicked card
+        this.setAttribute('src', cardArray[cardId].img);
+    }
+    // the checkMatch function runs just when the chosenCards array contains two elements
+    // this means the function will nut run untill the user choose another card so the function
+    //can compare if there is match
+    if (chosenCards.length === 2) {
+        moves.innerHTML++;
+        setTimeout(checkMatch, 300);
+    }
+}
+
+function flipCard1() {
     const cardId = this.getAttribute('key');
     // check if the clicked card is already in the chosenCard array to prevent adding the same card twice
     // if the user clicks the same card twice after each other
@@ -280,7 +395,7 @@ function flipCard() {
     //can compare if there is match
     if (chosenCards.length === 2) {
         moves.innerHTML++;
-        setTimeout(checkMatch, 300);
+        setTimeout(checkMatch1, 300);
     }
 }
 
@@ -303,10 +418,12 @@ function flipCard2() {
     // this means the function will nut run untill the user choose another card so the function
     //can compare if there is match
     if (chosenCards.length === 2) {
+        moves.innerHTML++;
         setTimeout(checkMatch2, 300);
     }
 }
 
 // run the fuctions
-createBoard();
-createBoard2();
+// createBoard();
+// createBoard1();
+// createBoard2();
