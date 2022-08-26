@@ -32,7 +32,7 @@ body {
     width: 100%;
 }
 
-#grid {
+.easy {
     display: none;
     width: 60%;
     flex-wrap: wrap;
@@ -40,12 +40,12 @@ body {
     margin: 0 auto;
 }
 
-#grid img {
+.easy img {
     width: 25%;
     height: 25%;
 }
 
-#grid1 {
+.normal {
     display: none;
     width: 50%;
     flex-wrap: wrap;
@@ -53,12 +53,12 @@ body {
     margin: 0 auto;
 }
 
-#grid1 img {
+.normal img {
     width: 20%;
     height: 20%;
 }
 
-#grid2 {
+.hard {
     display: none;
     width: 80%;
     flex-wrap: wrap;
@@ -66,7 +66,7 @@ body {
     margin: 0 auto;
 }
 
-#grid2 img {
+.hard img {
     width: 12%;
     height: 12%;
 }
