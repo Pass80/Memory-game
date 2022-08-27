@@ -141,6 +141,7 @@ function createBoard(id) {
         card.addEventListener('click', flipCard);
         gridDisplay.appendChild(card);
         // adding a class to the gridDisplay accourding to the level selection
+        gridDisplay.removeAttribute('class');
         gridDisplay.classList.add(id);
         // console.log(card, i);
     }
