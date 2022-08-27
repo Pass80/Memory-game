@@ -95,7 +95,7 @@ const startGame = (e) => {
     if (int !== null) {
         clearInterval(int);
         [second, minute] = [0, 0];
-        timerRef.innerHTML = '00 : 00';
+        timerRef.innerHTML = '00:00';
     }
     int = setInterval(mainTime, 1000);
 };
@@ -152,6 +152,9 @@ function flipCard() {
     // if the user clicks the same card twice after each other
     if (chosenCardsIds.length > 0 && chosenCardsIds.includes(cardId)) {
         return;
+    }
+    if (chosenCards.length === 2) {
+        return;
     } else {
         //add the equivalent animal name from cardArray to the clicked card to the chosenCards array
         chosenCards.push(cardList[cardId].name);
@@ -166,7 +169,7 @@ function flipCard() {
     //can compare if there is match
     if (chosenCards.length === 2) {
         moves.innerHTML++;
-        setTimeout(() => checkMatch(cardList), 300);
+        setTimeout(() => checkMatch(cardList), 500);
     }
 }
 
