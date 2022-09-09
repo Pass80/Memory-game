@@ -63,8 +63,7 @@ const movesInRound = document.getElementById('statisticsMove');
 const resultsOfRound = document.getElementById('statisticsResult');
 const timeOfRound = document.getElementById('statisticsTime');
 let timerRef = document.getElementById('time');
-// fix the problem "Scripts may close only the windows that were opened by it."
-let customWindow = window.open('', '_blank', '');
+
 let chosenCards = [];
 let chosenCardsIds = [];
 let wonCards = [];
@@ -214,3 +213,6 @@ function checkMatch() {
         chosenCardsIds = [];
     }
 }
+
+// fix the problem "Scripts may close only the windows that were opened by it."
+let customWindow = window.open('', '_blank', '');
