@@ -106,6 +106,7 @@ const exitGame = () => {
     if (int !== null) {
         clearInterval(int);
     }
+    let customWindow = window.open('', '_blank', '');
     customWindow.close();
 };
 
@@ -215,4 +216,4 @@ function checkMatch() {
 }
 
 // fix the problem "Scripts may close only the windows that were opened by it."
-let customWindow = window.open('', '_blank', '');
+
