@@ -105,7 +105,7 @@ const exitGame = () => {
     if (int !== null) {
         clearInterval(int);
     }
-    window.close();
+    window.open("", '_self').window.close();
 };
 
 // function to open the level selection window
