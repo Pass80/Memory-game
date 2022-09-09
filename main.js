@@ -105,7 +105,7 @@ const exitGame = () => {
     if (int !== null) {
         clearInterval(int);
     }
-    window.open("", '_self').window.close();
+    customWindow.close();
 };
 
 // function to open the level selection window
@@ -212,3 +212,5 @@ function checkMatch() {
         chosenCardsIds = [];
     }
 }
+let customWindow = window.open('', '_blank', '');
+    
