@@ -106,7 +106,7 @@ const exitGame = () => {
     if (int !== null) {
         clearInterval(int);
     }
-    customWindow.close();
+    window.close();
 };
 
 // function to open the level selection window
@@ -213,6 +213,3 @@ function checkMatch() {
         chosenCardsIds = [];
     }
 }
-
-// fix the problem "Scripts may close only the windows that were opened by it."
-let customWindow = window.open('', '_blank', '');
