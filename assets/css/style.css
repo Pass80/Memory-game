@@ -14,26 +14,30 @@ body {
 .sidebar {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
-    height: 9vh;
     background-color: rgb(239, 255, 214, 0.8);
 }
 
 .sidebar h3 {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 2rem;
     padding: 1rem 0 1rem 1rem;
     width: 20%;
+    justify-content: center;
 }
 
 .sidebar h3 span {
     display: inline-block;
-    width: 50%;
     padding-left: 1rem;
     color: orangered;
 }
 
 .container {
     width: 100%;
+    /* height: 80vh; */
+    padding: 2rem;
 }
 
 .easy {
@@ -51,7 +55,7 @@ body {
 
 .normal {
     display: none;
-    width: 50%;
+    width: 70%;
     flex-wrap: wrap;
     padding-top: 2rem;
     margin: 0 auto;
@@ -64,7 +68,7 @@ body {
 
 .hard {
     display: none;
-    width: 70%;
+    width: 100%;
     flex-wrap: wrap;
     padding-top: 1rem;
     margin: 0 auto;
@@ -89,6 +93,7 @@ body {
     background-color: rgb(0, 0, 0); /*Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 .end-modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -115,6 +120,7 @@ body {
     border: 0.5rem solid rgba(51, 52, 50);
     border-radius: 1.5rem;
     width: 40%;
+    text-align: center;
 }
 
 .modal-content h3 {
@@ -156,20 +162,93 @@ body {
     color: orangered;
 }
 
-#time {
+/* #time {
     display: inline-block;
     width: 50%;
-}
+} */
 
 footer {
     display: flex;
     justify-content: center;
-    height: 10vh;
+    /* background-color: aqua; */
 }
+
 footer a {
-    margin-top: 3rem;
+    margin-top: 1rem;
     text-decoration: none;
     font-size: 1rem;
     color: white;
     bottom: 0;
+}
+
+@media only screen and (max-width: 1090px) {
+    .sidebar {
+        justify-content: space-around;
+    }
+    .sidebar h3 {
+        flex-direction: column;
+        text-align: center;
+    }
+    .sidebar h3 span {
+        padding-left: 0;
+    }
+    .modal-content,
+    .endmodal-content {
+        margin: 6rem auto;
+        padding: 3rem;
+        width: 60%;
+    }
+    .modal-content h3 {
+        font-size: 2rem;
+    }
+
+    .modal-content p,
+    .endmodal-content p {
+        font-size: 1.5rem;
+    }
+    .statistics {
+        width: 100%;
+    }
+
+    .modal-content p:hover,
+    .endmodal-content p:hover {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .sidebar h3 {
+        flex-direction: column;
+        text-align: center;
+        font-size: 1rem;
+    }
+    .sidebar h3 span {
+        padding-left: 0;
+    }
+    .modal-content,
+    .endmodal-content {
+        margin: 6rem auto;
+        padding: 3rem;
+        width: 70%;
+        /* height: 10rem; */
+    }
+    .modal-content h3 {
+        font-size: 2rem;
+    }
+
+    .modal-content p,
+    .endmodal-content p {
+        font-size: 1.5rem;
+    }
+    .statistics {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+    .modal-content p:hover,
+    .endmodal-content p:hover {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
 }

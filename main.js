@@ -115,7 +115,7 @@ const selectLvl = () => {
     while (gridDisplay.firstChild) {
         gridDisplay.removeChild(gridDisplay.firstChild);
     }
-    showLvl.innerHTML = '';
+    showLvl.innerHTML = '-';
     moves.innerHTML = 0;
     results.innerHTML = 0;
     timerRef.innerHTML = '00:00';
