@@ -55,9 +55,9 @@ body {
 
 .normal {
     display: none;
-    width: 70%;
+    width: 60%;
     flex-wrap: wrap;
-    padding-top: 2rem;
+    padding-top: 1rem;
     margin: 0 auto;
 }
 
@@ -68,7 +68,7 @@ body {
 
 .hard {
     display: none;
-    width: 100%;
+    width: 80%;
     flex-wrap: wrap;
     padding-top: 1rem;
     margin: 0 auto;
@@ -191,6 +191,16 @@ footer a {
     }
     .sidebar h3 span {
         padding-left: 0;
+    }
+
+    .easy {
+        width: 80%;
+    }
+    .normal {
+        width: 80%;
+    }
+    .hard {
+        width: 100%;
     }
     .modal-content,
     .endmodal-content {
